@@ -1,0 +1,162 @@
+<!-- 
+██████╗  ██████╗  ██████╗ ██╗     ███████╗ █████╗ ██████╗ ██████╗ 
+██╔══██╗██╔═══██╗██╔═══██╗██║     ╚══███╔╝██╔══██╗██╔══██╗██╔══██╗
+██████╔╝██║   ██║██║   ██║██║       ███╔╝ ███████║██████╔╝██████╔╝
+██╔══██╗██║   ██║██║   ██║██║      ███╔╝  ██╔══██║██╔═══╝ ██╔═══╝ 
+██████╔╝╚██████╔╝╚██████╔╝███████╗███████╗██║  ██║██║     ██║     
+╚═════╝  ╚═════╝  ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝     
+ -->
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>BOOLZAPP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- FAVICON -->
+    <link rel="icon" href="img/favi-whatsapp.png" type="favicon" sizes="16x16">
+    <!-- GOOGLE FONT -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,100;1,300&display=swap"
+        rel="stylesheet">
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+        integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/lib/Font-Awesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="~/lib/Font-Awesome/css/all.min.css">
+    <script src="https://kit.fontawesome.com/js/script.js" crossorigin="anonymous"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- JAVASCRIPT+JQUERY -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous"></script>
+    <script src="js/script.js" charset="utf-8"></script>
+    <!-- VUE -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+</head>
+
+
+<body>
+    <div id="app">
+
+        <!-- BACKGROUND TOP-BOTTOM -->
+        <div id="background-top"></div>
+        <div id="background-bottom"></div>
+
+        <!-- MAIN CONTAINER -->
+        <div id="container">
+
+            <!-- LEFT SECTION CONTACTS -->
+            <div id="left-section">
+
+                <div id="user">
+                    <div class="left">
+                        <a href="https://github.com/Giovanni-Bernardi"><img :src="myUser.avatar" alt="avatar user"></a>
+                    </div>
+
+                    <div class="right">
+                        <i class="fas fa-circle-notch"></i>
+                        <i class="fas fa-comment-alt"></i>
+                        <i class="fas fa-ellipsis-v"></i>
+                    </div>
+                </div>
+
+                <div id="notification">
+                    <i class="fas fa-bell-slash"></i>
+                    <div>
+                        <h5>Ricevi notifiche di nuovi messages</h5>
+                        <a href="#">Attiva notifiche desktop</a>
+                    </div>
+                </div>
+
+                <div id="search-contact">
+                    <input type="text" name="" value="" placeholder="Cerca o inizia una nuova chat"
+                        v-model="searchContact">
+                    <i class="fas fa-search"></i>
+                </div>
+
+                <div id="contacts">
+                    <!-- MILESTONE 4
+                    SEARCH FILTER -->
+                    <div class="container-contacts" tabindex="1" v-for="(contacts,index) in users"
+                        v-if="contacts.name.toLowerCase().includes(searchContact.toLowerCase())"
+                        :class="(index === activeEl) ? 'contacts active' : 'contacts'" @click="showChat(index)">
+
+                        <img :src="contacts.avatar" alt="avatar contacts">
+
+                        <div class="next-avatar">
+                            <h5>{{contacts.name}}</h5>
+                            <!-- ultimo message in chat -->
+                            <p class="last-message">
+                                {{contacts.chat[contacts.chat.length -1].message}}
+                            </p>
+                        </div>
+                        <p>
+                            {{contacts.chat[contacts.chat.length -1].time}}
+                        </p>
+                    </div>
+                </div>
+            </div> <!-- /LEFT SECTION -->
+
+
+
+            <!-- RIGHT CHAT SECTION -->
+            <div class="right-section" v-for="(contacts,index) in users" :class="{active : index===activeEl}">
+
+                <div id="top-chat">
+                    <div class="left">
+                        <img :src="users[activeEl].avatar" alt="avatar user">
+                        <div>
+                            <h5>{{users[activeEl].name}}</h5>
+                            <p id="chat-timedate">{{users[activeEl].data}}</p>
+                        </div>
+                    </div>
+
+                    <div class="top-right-icons">
+                        <i class="fas fa-search"></i>
+                        <i class="fas fa-ellipsis-v"></i>
+                    </div>
+                </div>
+                <!-- MILESTONE 5 -->
+                <div id="chat">
+                    <div v-for="(messages,i) in users[activeEl].chat" :class=messages.status>
+
+                        <!-- DROPDOWN MESSAGE, delete/details -->
+                        <div class="dropdown">
+                            <p>{{messages.message}}</p>
+                            <i class="fas fa-angle-down" @click='toggleDropDown(i)'>
+                                <ul class="dropdownMsgHide" :class='{dropdownMsgShow: messages.visible}'
+                                    @mouseleave='{dropdownMsgShow: ""}'>
+                                    <li @click='deleteMessage(i)'>Elimina messaggio</li>
+                                    <li>Info messaggio</li>
+                                </ul>
+                            </i>
+                        </div>
+
+                        <p>{{messages.time}}</p>
+                    </div>
+                </div> <!-- /CHAT -->
+
+                <!-- input text messages -->
+                <div class="bottom-textInput">
+                    <i class="far fa-grin"></i>
+                    <i class="fas fa-paperclip"></i>
+
+                    <!-- press @button enter to send message -->
+                    <input type="text" name="" value="" placeholder="Scrivi un messageso" v-model="inputmessage"
+                        @keyup.enter="addElement">
+
+                    <!-- @click microphone to send message -->
+                    <i class="fas fa-microphone" @click="addElement">
+                    </i>
+                </div>
+            </div><!-- /RIGHT CHAT SECTION -->
+        </div> <!-- /MAIN CONTAINER -->
+    </div> <!-- /APP -->
+
+    <!-- js non funziona se non metto script in fondo -->
+    <script type="text/javascript" src="js/script.js"></script>
+</body>
+</html>

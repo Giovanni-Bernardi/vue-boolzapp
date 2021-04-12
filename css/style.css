@@ -1,0 +1,382 @@
+/* GENERAL RULES */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+h5 {
+  font-size: 19px;
+  font-weight: 400;
+  /* text-decoration-thickness: none; */
+}
+
+/* MAIN CONTAINER */
+#container {
+  position: absolute;
+  left: 4vw;
+  top: 2vh;
+  margin-top: 3px;
+  height: 95vh;
+  width: 91vw;
+  display: flex;
+  flex-direction: row;
+  background-color: rgb(255, 255, 255);
+  z-index: 1;
+}
+
+#background-top {
+  background-color: #128c7e;
+  height: 127px;
+  z-index: -1;
+}
+
+#background-bottom {
+  background-color: lightgrey;
+  height: 85vh;
+}
+
+#left-section {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+}
+
+#user {
+  background-color: #f0f0f0;
+  height: 70px;
+  border-right: 1px solid lightgrey;
+  display: flex;
+  justify-content: space-between;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  padding-left: 1%;
+  width: 70%;
+}
+
+.right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 1%;
+  width: 30%;
+}
+
+.right > i {
+  margin: 0 15%;
+  color: #919191;
+}
+
+.top-right-icons > i {
+  margin: 26px 31px 10px -7px;
+  color: #919191;
+}
+
+.left img {
+  height: 65%;
+  border-radius: 50%;
+  margin-right: 1%;
+  margin: 4px 10px;
+}
+
+#notification {
+  height: 95px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #9de1fe;
+}
+
+#notification i {
+  border-radius: 50%;
+  padding: 10px;
+  margin-right: 5%;
+  font-size: 25px;
+  background-color: white;
+  color: #9de1fe;
+}
+
+#notification a {
+  color: #678998;
+  font-size: 15px;
+  margin-top: 3px;
+  font-weight: 300;
+  text-decoration-line: none;
+}
+
+#search-contact {
+  height: 6vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f6f6f6;
+}
+
+#search-contact input {
+  width: 90%;
+  height: 70%;
+  padding-left: 30px;
+  text-align: center;
+  border: none;
+  border-radius: 20px;
+  outline: none !important;
+}
+
+#search-contact i {
+  position: absolute;
+  color: lightgrey;
+  left: 4%;
+}
+
+#contacts {
+  height: 54vh;
+  overflow: auto;
+}
+
+.container-contacts {
+  display: flex;
+  position: relative;
+  justify-content: flex-start;
+  height: 60px;
+}
+
+/* contacts bottom-border position */
+.container-contacts:after {
+  content: "";
+  width: 80%;
+  position: absolute;
+  right: 0px;
+  top: 62px;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.container-contacts img {
+  border-radius: 50%;
+  margin: 2%;
+  margin-left: 13px;
+  height: 80%;
+}
+
+.container-contacts p {
+  color: grey;
+  font-size: 13px;
+  margin-top: 2%;
+}
+
+.last-message {
+  width: 78px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.container-contacts:hover {
+  background-color: #f5f5f5;
+  cursor: pointer;
+}
+
+.container-contacts:focus {
+  /* background-color: #ebebeb;
+  border: 2px solid #ebebeb;
+  outline-style: solid;
+  outline-color: #ebebeb; */
+  /* outline-width: thin; */
+  outline: none !important;
+  cursor: pointer;
+  background-color: #ebebeb;
+}
+
+.next-avatar {
+  margin: 3% 31% 8px 4%;
+}
+
+/* impostazioni sez right */
+.right-section {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  display: none;
+}
+
+.right-section.active {
+  display: block;
+}
+
+#top-chat {
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  background-color: #f0f0f0;
+}
+
+#top-chat > .left img {
+  height: 65%;
+}
+
+#chat-timedate {
+  font-size: 10px;
+  color: grey;
+}
+
+#chat {
+  background-image: url(../img/whatsapp-default-background.jpg);
+  height: calc(100% - (7vh + 82px));
+  overflow: auto;
+  /* display flex per fare unica chat per riga */
+  display: flex;
+  flex-direction: column;
+}
+
+.sent {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-end;
+  justify-content: center;
+  max-width: 50%;
+  height: auto;
+  margin: 2%;
+  padding: 10px;
+  border-radius: 15px;
+  word-break: break-all;
+  background-color: #dcf8c6;
+}
+
+.sent p:last-child,
+.received p:last-child {
+  font-size: 10px;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1%;
+  color: grey;
+}
+
+.dropdown {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.sent i,
+.received i {
+  padding-left: 1px;
+  margin-left: 2px;
+  float: right;
+  position: relative;
+  top: 5px;
+  cursor: pointer;
+  color: #c1c1c1;
+}
+
+.sent i:hover,
+.received i:hover {
+  font-size: 18px;
+}
+
+.dropdownMsgHide {
+  display: none;
+  list-style: none;
+  position: absolute;
+  right: -19px;
+  padding: 4px;
+  font-size: 14px;
+  background-color: white;
+}
+
+.dropdownMsgShow {
+  display: block;
+  height: 110px;
+  width: 126px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 13px;
+  line-height: 23px;
+  /* text-decoration-line: none; */
+  font-weight: 500;
+  font-family: "Roboto";
+  color: black;
+  background-image: (180deg, #dddbd1, #d2dbdc);
+  background-color: white;
+  box-shadow: 5px 3px 22px 5px #b6b6b6;
+}
+
+.sent .dropdown li {
+  width: max-content;
+  padding: 2px;
+  border-bottom: 1px solid lightgrey;
+}
+
+.received .dropdown li {
+  width: max-content;
+  border-bottom: 1px solid lightgrey;
+}
+
+.received {
+  flex-direction: column;
+  justify-content: center;
+  align-self: flex-start;
+  max-width: 50%;
+  height: auto;
+  display: flex;
+  margin-left: 2%;
+  margin-bottom: 2%;
+  padding: 10px;
+  border-radius: 15px;
+  word-break: break-word;
+  background-color: white;
+}
+
+.bottom-textInput {
+  min-height: 63px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f0f0f0;
+}
+
+.bottom-textInput input {
+  width: 80%;
+  height: 39px;
+  border: none;
+  font-size: 15px;
+  padding-left: 30px;
+  border-radius: 20px;
+  outline: none !important;
+}
+
+.bottom-textInput i {
+  margin-left: -9px;
+  font-size: 25px;
+  color: #919191;
+}
+
+.bottom-textInput i:first-child {
+  padding-left: 4%;
+}
+
+.bottom-textInput i:last-child {
+  padding-right: 4%;
+}
+
+#chat > div:nth-child(4) > div > i > ul {
+  height: 110px;
+  left: -1px;
+  width: 126px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-family: "Roboto";
+  font-size: 13px;
+  line-height: 23px;
+  /* text-decoration-line: none; */
+  font-weight: 500;
+}
+
+#user > div.left > a > img {
+  width: 50px;
+}
