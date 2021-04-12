@@ -12,7 +12,6 @@ body {
 h5 {
   font-size: 19px;
   font-weight: 400;
-  /* text-decoration-thickness: none; */
 }
 
 /* MAIN CONTAINER */
@@ -29,6 +28,7 @@ h5 {
   z-index: 1;
 }
 
+/* BACKGROUNDS */
 #background-top {
   background-color: #128c7e;
   height: 127px;
@@ -40,6 +40,7 @@ h5 {
   height: 85vh;
 }
 
+/* LEFT-SECTION */
 #left-section {
   display: flex;
   flex-direction: column;
@@ -54,6 +55,11 @@ h5 {
   justify-content: space-between;
 }
 
+#user > div.left > a > img {
+  width: 50px;
+}
+
+/* icons */
 .left {
   display: flex;
   align-items: center;
@@ -86,6 +92,7 @@ h5 {
   margin: 4px 10px;
 }
 
+/* blue section allert notification */
 #notification {
   height: 95px;
   display: flex;
@@ -111,6 +118,7 @@ h5 {
   text-decoration-line: none;
 }
 
+/* search bar */
 #search-contact {
   height: 6vh;
   display: flex;
@@ -135,6 +143,7 @@ h5 {
   left: 4%;
 }
 
+/* box contact */
 #contacts {
   height: 54vh;
   overflow: auto;
@@ -142,19 +151,9 @@ h5 {
 
 .container-contacts {
   display: flex;
-  position: relative;
   justify-content: flex-start;
+  position: relative;
   height: 60px;
-}
-
-/* contacts bottom-border position */
-.container-contacts:after {
-  content: "";
-  width: 80%;
-  position: absolute;
-  right: 0px;
-  top: 62px;
-  border-bottom: 1px solid #eeeeee;
 }
 
 .container-contacts img {
@@ -170,11 +169,14 @@ h5 {
   margin-top: 2%;
 }
 
-.last-message {
-  width: 78px;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+/* contacts bottom-border position */
+.container-contacts:after {
+  content: "";
+  width: 80%;
+  position: absolute;
+  right: 0px;
+  top: 62px;
+  border-bottom: 1px solid #eeeeee;
 }
 
 .container-contacts:hover {
@@ -182,22 +184,27 @@ h5 {
   cursor: pointer;
 }
 
+/* hide default input style */
 .container-contacts:focus {
-  /* background-color: #ebebeb;
-  border: 2px solid #ebebeb;
-  outline-style: solid;
-  outline-color: #ebebeb; */
-  /* outline-width: thin; */
   outline: none !important;
   cursor: pointer;
   background-color: #ebebeb;
 }
 
+/* last message in contacts container trunc words*/
+.last-message {
+  width: 78px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; /*word truncation*/
+}
+
 .next-avatar {
   margin: 3% 31% 8px 4%;
 }
+/* END LEFT SECTION */
 
-/* impostazioni sez right */
+/* RIGHT SECTION */
 .right-section {
   display: flex;
   flex-direction: column;
@@ -226,14 +233,14 @@ h5 {
 }
 
 #chat {
-  background-image: url(../img/whatsapp-default-background.jpg);
-  height: calc(100% - (7vh + 82px));
-  overflow: auto;
-  /* display flex per fare unica chat per riga */
   display: flex;
   flex-direction: column;
+  height: calc(100% - (7vh + 82px));
+  overflow: auto;
+  background-image: url(../img/whatsapp-default-background.jpg);
 }
 
+/* MESSAGES */
 .sent {
   display: flex;
   flex-direction: column;
@@ -279,42 +286,16 @@ h5 {
   font-size: 18px;
 }
 
-.dropdownMsgHide {
-  display: none;
-  list-style: none;
-  position: absolute;
-  right: -19px;
-  padding: 4px;
-  font-size: 14px;
-  background-color: white;
-}
-
-.dropdownMsgShow {
-  display: block;
+#chat > div:nth-child(4) > div > i > ul {
   height: 110px;
+  left: -1px;
   width: 126px;
   cursor: pointer;
   border-radius: 5px;
+  font-family: "Roboto";
   font-size: 13px;
   line-height: 23px;
-  /* text-decoration-line: none; */
   font-weight: 500;
-  font-family: "Roboto";
-  color: black;
-  background-image: (180deg, #dddbd1, #d2dbdc);
-  background-color: white;
-  box-shadow: 5px 3px 22px 5px #b6b6b6;
-}
-
-.sent .dropdown li {
-  width: max-content;
-  padding: 2px;
-  border-bottom: 1px solid lightgrey;
-}
-
-.received .dropdown li {
-  width: max-content;
-  border-bottom: 1px solid lightgrey;
 }
 
 .received {
@@ -332,6 +313,7 @@ h5 {
   background-color: white;
 }
 
+/* TEXT INPUT MESSAGES */
 .bottom-textInput {
   min-height: 63px;
   display: flex;
@@ -364,19 +346,40 @@ h5 {
   padding-right: 4%;
 }
 
-#chat > div:nth-child(4) > div > i > ul {
+/* DROPDOWN BOX MESSAGE */
+.dropdownMsgHide {
+  display: none;
+  list-style: none;
+  position: absolute;
+  right: -19px;
+  padding: 4px;
+  font-size: 14px;
+  background-color: white;
+}
+
+.dropdownMsgShow {
+  display: block;
   height: 110px;
-  left: -1px;
   width: 126px;
   cursor: pointer;
   border-radius: 5px;
-  font-family: "Roboto";
   font-size: 13px;
   line-height: 23px;
-  /* text-decoration-line: none; */
   font-weight: 500;
+  font-family: "Roboto";
+  color: black;
+  background-image: (180deg, #dddbd1, #d2dbdc);
+  background-color: white;
+  box-shadow: 5px 3px 22px 5px #b6b6b6;
 }
 
-#user > div.left > a > img {
-  width: 50px;
+.sent .dropdown li {
+  width: max-content;
+  padding: 2px;
+  border-bottom: 1px solid lightgrey;
+}
+
+.received .dropdown li {
+  width: max-content;
+  border-bottom: 1px solid lightgrey;
 }
