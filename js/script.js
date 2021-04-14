@@ -147,7 +147,7 @@ new Vue({
         setTimeout(
           () =>
             this.users[this.activeEl].chat.push({
-              message: "phok",
+              message: "ok",
               time: this.getNow(),
               status: "received",
               visible: false,
@@ -159,7 +159,7 @@ new Vue({
       }
     },
 
-    //real time data/time on messages
+    //real time date/time on messages
     getNow: function () {
       const today = new Date();
       const date =
